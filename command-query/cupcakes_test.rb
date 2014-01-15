@@ -14,7 +14,7 @@ class CupcakesTest < Minitest::Test
     skip
     cupcakes = Cupcakes.new
     cupcakes << Cupcake.new("Carrot", 5) # 5 grams of sugar
-    assert_equal "Carrot", cupcakes.sweetest.kind
+    assert_equal "Carrot", cupcakes.sweetest.flavor
   end
 
   def test_sweetest_cupcake
@@ -23,6 +23,6 @@ class CupcakesTest < Minitest::Test
     cupcakes << Cupcake.new("Carrot", 5)
     cupcakes << Cupcake.new("Caramel", 12)
     cupcakes << Cupcake.new("Chocolate", 8)
-    assert_equal "Caramel", cupcakes.sweetest.kind
+    assert_equal "Caramel", cupcakes.sweetest.flavor
   end
 end
