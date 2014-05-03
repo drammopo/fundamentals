@@ -33,7 +33,10 @@ class HashesFourTest < Minitest::Test
     # Your turn.
     # Do the work to turn numbers into a hash
     # that looks like the `expected` hash.
-
+    hash = {}
+    numbers.each do |number|
+      hash[number] = true
+    end
 
     expected = {
       6 => true,
@@ -52,10 +55,14 @@ class HashesFourTest < Minitest::Test
 
   def test_another_array_transformation
     names = ["Christopher", "Travis", "Tyson", "Daniella", "Trevor"]
+    defaults = [true, true, true, true, true]
 
     # Turn this into a hash where each name
     # is a key that points to the value true
     # {"Christopher => true} ...
+
+    expected =  {"Christopher"=>true, "Travis"=>true, "Tyson"=>true, "Daniella"=>true, "Trevor"=>true}
+    assert_equal expected, Hash[names.zip(defaults)]
   end
 
   def test_counting_dogs_and_cats
@@ -80,6 +87,11 @@ class HashesFourTest < Minitest::Test
     letters = ["h", "i", "p", "p", "o", "p", "o", "t", "a", "m", "u", "s"]
 
     # Your turn
+    counts = Hash.new(0)
+
+    letters.each do |letter|
+      counts[letter] += 1
+    end
 
     expected = {
       "h"=>1,
