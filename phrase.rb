@@ -1,5 +1,5 @@
 class Phrase
-  attr_reader :text, :words
+  attr_reader :text
 
   def initialize(text)
     @text = text
@@ -7,7 +7,6 @@ class Phrase
   end
 
   def word_count
-    words = @text.split
     words.inject({}) do |h, (word)|
       h.has_key?(word) ? h[word] += 1 :  h[word] = 1
       h
@@ -15,7 +14,8 @@ class Phrase
   end
 
   def words
-   @words = @text.downcase.split(/\W+/)
+   words_array = @text.downcase.split(/\W+/)
+   words_array.reject{ |w| w.empty? }
   end
 
   def length
@@ -39,6 +39,6 @@ class Phrase
   end
 
   def vulgar?
-    @words.any? { |word| ['bullshit', 'effing'].include?(word) }
+    words.any? { |word| ['bullshit', 'effing'].include?(word) }
   end
 end

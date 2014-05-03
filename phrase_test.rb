@@ -58,7 +58,6 @@ class PhraseTest < Minitest::Test
   end
 
   def test_tabs_are_spaces_too
-    skip
     text = "real\tamazing\tdistances"
     phrase = Phrase.new(text)
     words = ["real", "amazing", "distances"]
@@ -78,7 +77,6 @@ class PhraseTest < Minitest::Test
   end
 
   def test_alphabetize_the_word_list
-    skip
     text = "ornery goblins and bloated elves"
     phrase = Phrase.new(text)
     alphabetized = ["and", "bloated", "elves", "goblins", "ornery"]
@@ -109,7 +107,6 @@ class PhraseTest < Minitest::Test
   end
 
   def test_a_phrase_is_not_always_a_question
-    skip
     phrase = Phrase.new("Bingo. Not a question.")
     refute phrase.question?
   end
@@ -126,7 +123,6 @@ class PhraseTest < Minitest::Test
   end
 
   def test_there_are_many_silences
-    skip
     [" ", "    ", "       ", "            ", "\t  ", "    \t    "].each do |text|
       assert Phrase.new(text).silent?
     end
