@@ -31,8 +31,9 @@ class HashesTwoTest < Minitest::Test
 
     # Your turn.
     # Who lives in the red house?
+    assert_equal ["Bill", "Carolyn", "Frederic", "Anna"], neighborhood['red house']
     # Who lives in the peach house?
-
+    assert_equal ["Kaylee", "Grant"], neighborhood['peach house']
     # It gets more complicated if we know the value, but
     # not the key. What if we met a nice fellow named Alex
     # and we know he lives in the neighborhood, but not
@@ -49,7 +50,21 @@ class HashesTwoTest < Minitest::Test
 
     # Your turn.
     # Which house does Penelope live in?
+    other_house = nil
+    neighborhood.each do |color, people|
+      if people.include?('Penelope')
+        other_house = color
+      end
+    end
+    assert_equal 'yellow house', other_house
     # Which house does Jim live in?
+    yet_another_house = nil
+    neighborhood.each do |color, people|
+      if people.include?('Jim')
+        yet_another_house = color
+      end
+    end
+    assert_equal 'blue house', yet_another_house
   end
 end
 
