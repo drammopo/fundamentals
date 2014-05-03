@@ -66,8 +66,11 @@ class HashesOneTest < Minitest::Test
     # right name:
     #
     # 1. What is the name of the person wearing the pink shoelaces?
+    assert_equal 'Carson', crowd['pink shoelaces']
     # 2. What is the name of the person wearing the black slacks?
+    assert_equal 'Gustav', crowd['black slacks']
     # 3. What is the name of the person with the big nose?
+    assert_equal 'Jacques', crowd['big nose']
   end
 
   # A phone book is a lot like a hash.
@@ -77,7 +80,6 @@ class HashesOneTest < Minitest::Test
   # So you can look up the name in the phone book and
   # get back the phone number.
   def test_the_phone_book
-    skip
     phone_book = {
       "Howe, Joanie" => "559-989-3056",
       "Tremblay, Agustin" => "755-536-0289",
@@ -98,9 +100,13 @@ class HashesOneTest < Minitest::Test
     # phone numbers in the hash.
     #
     # Agustin Tremblay
+    assert_equal '755-536-0289', phone_book['Tremblay, Agustin']
     # Sarah Treutel
+    assert_equal '143-845-1923', phone_book['Treutel, Sarah']
     # Christa Steuber
+    assert_equal '459-722-7616', phone_book['Steuber, Christa']
     # Ruben Feeney
+    assert_equal '610-736-8746', phone_book['Feeney, Ruben']
   end
 
   # At the DMV you have to pull a little
@@ -110,7 +116,6 @@ class HashesOneTest < Minitest::Test
   # one, or decide that they're fed up with waiting, and leave
   # before they've had their turn.
   def test_waiting_list_at_the_dmv
-    skip
     people = {
       289 => "August Glover",
       291 => "Gordon Johnston",
@@ -128,13 +133,16 @@ class HashesOneTest < Minitest::Test
     # their queuing number.
     #
     # Who has number 292?
+    assert_equal "Leila Little", people[292]
     # Who has number 306?
+    assert_equal "Mark Muller", people[306]
     # Who has number 305?
+    assert_equal "Aaron Mills", people[305]
     # Who has number 289?
+    assert_equal "August Glover", people[289]
   end
 
   def test_birthdays_in_a_school_class
-    skip
     fourth_grade = {
       "Macy" => "December 2",
       "Coy" => "March 2",
@@ -149,14 +157,16 @@ class HashesOneTest < Minitest::Test
     }
 
     # What is Charlie's birthday?
+    assert_equal "October 26", fourth_grade['Charlie']
     # What is Coy's birthday?
+    assert_equal "March 2", fourth_grade['Coy']
     # What is Raquel's birthday?
+    assert_equal "July 24", fourth_grade['Raquel']
   end
 
   # In Scrabble we know what the letter is, but not
   # the score. We can look up the score in a hash.
   def test_scrabble_scores
-    skip
     scores = {
       "A"=>1, "B"=>3, "C"=>3, "D"=>2, "E"=>1, "F"=>4,
       "G"=>2, "H"=>4, "I"=>1, "J"=>8, "K"=>5, "L"=>1,
@@ -166,8 +176,11 @@ class HashesOneTest < Minitest::Test
     }
 
     # How much is the letter Q worth?
+    assert_equal 10, scores["Q"]
     # How about J?
+    assert_equal 8, scores["J"]
     # And F?
+    assert_equal 4, scores["F"]
     # Each time, prove that you're right with an assertion.
   end
 
@@ -183,7 +196,6 @@ class HashesOneTest < Minitest::Test
   # What breed is she?
   # Answer: poodle.
   def test_add_more_pets
-    skip
     pets = {
       'Rex' => 'bulldog',
       'Ladybug' => 'poodle',
@@ -204,6 +216,8 @@ class HashesOneTest < Minitest::Test
     #
     # 1. A terrier named Angus
     # 2. A poodle named Diamond
+    pets['Angus'] = 'terrier'
+    pets['Diamond'] = 'poodle'
 
 
 
@@ -214,7 +228,6 @@ class HashesOneTest < Minitest::Test
   end
 
   def test_hashes_and_arrays_can_seem_kind_of_similar
-    skip
     # This is an array
     line_of_people = ["Alice", "Bob", "Charlie", "Dave", "Eve"]
 
@@ -233,10 +246,12 @@ class HashesOneTest < Minitest::Test
     # Your turn.
     # Add George to the line.
     # Add Harriet to the line.
+    line_of_people << "George"
+    line_of_people << "Harriet"
 
     # Who is at position 5 now? Write an
     # assertion to prove that you are right.
-
+    assert_equal "Fred", line_of_people[5]
 
     # Now we're done with the array.
     # This is a hash with numeric keys
@@ -268,16 +283,21 @@ class HashesOneTest < Minitest::Test
     # Your turn.
     # Add Isabelle to the crowd.
     # Add Johnathon to the crowd.
+    crowd_of_people[6] = "Isabelle"
+    crowd_of_people[7] = "Johnathon"
 
 
     # Who is at position 4?
+   assert_equal "Eve", crowd_of_people[4]
     # Who is at position 5?
+   assert_equal "Fred", crowd_of_people[5]
     # Who is at position 6?
+   assert_equal "Isabelle", crowd_of_people[6]
     # Who is at position 42?
+   assert_equal "George", crowd_of_people[42]
   end
 
   def test_find_all_the_same_breeds
-    skip
     pets = {
       'Rex' => 'bulldog',
       'Ladybug' => 'poodle',
@@ -301,16 +321,28 @@ class HashesOneTest < Minitest::Test
     assert_equal ['Ladybug', 'Diamond'], poodles
 
     # Your turn.
-
+    labradors = []
+    pets.each do |name,breed|
+      if breed == 'labrador'
+        labradors << name
+      end
+    end
     # Loop through to find all the Labradors.
     # Write an assertion to prove that you did it right.
+    assert_equal ['Scotch', 'Ruby'], labradors
 
     # Loop through to find all the bulldogs.
     # Write an assertion to prove that you did it right.
+    bulldogs = []
+    pets.each do |name,breed|
+      if breed == 'bulldog'
+        bulldogs << name
+      end
+    end
+    assert_equal ['Rex', 'Bones'], bulldogs
   end
 
   def test_books_by_publishing_year
-    skip
     books = {
       'Dragonrider' => 1968,
       'Dune' => 1965,
@@ -327,12 +359,32 @@ class HashesOneTest < Minitest::Test
 
     # Find all the books that were published in 1968.
     # Write an assertion to prove that you're right.
+    published_in_1968 = []
+    books.each do |name,year|
+      if year == 1968
+        published_in_1968 << name
+      end
+    end
+    assert_equal ['Dragonrider', '2001: A Space Odyssey'], published_in_1968
     # Now do the same for 1962.
+    published_in_1962 = []
+    books.each do |name,year|
+      if year == 1962
+        published_in_1962 << name
+      end
+    end
+    assert_equal ['A Wrinkle in Time', 'A Clockwork Orange'], published_in_1962
     # Now find all the books published in 1951.
+    published_in_1951 = []
+    books.each do |name,year|
+      if year == 1951
+        published_in_1951 << name
+      end
+    end
+    assert_equal ['Foundation', 'The Puppet Masters'], published_in_1951
   end
 
   def test_birthdays_in_a_given_month
-    skip
     fourth_grade = {
       "Macy" => "December 2",
       "Coy" => "March 2",
@@ -347,7 +399,21 @@ class HashesOneTest < Minitest::Test
     }
 
     # Find everyone whose birthday is in May.
+    birthdays_in_may = []
+    fourth_grade.each do |name,birthday|
+      if birthday =~ /May/
+        birthdays_in_may << name
+      end
+    end
+    assert_equal ['Alf', 'Corbin', 'Breana'], birthdays_in_may
     # Find everyone who has a birthday in October.
+    birthdays_in_october = []
+    fourth_grade.each do |name,birthday|
+      if birthday =~ /October/
+        birthdays_in_october << name
+      end
+    end
+    assert_equal ['Rebecca', 'Delilah', 'Charlie'], birthdays_in_october
   end
 
 end
