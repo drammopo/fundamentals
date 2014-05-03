@@ -3,7 +3,6 @@ class Phrase
 
   def initialize(text)
     @text = text
-    @words = []
   end
 
   def word_count
@@ -35,7 +34,7 @@ class Phrase
   end
 
   def silent?
-    text.empty?
+    text.match(/^\s*\S*$/)
   end
 
   def vulgar?
