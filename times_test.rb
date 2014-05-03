@@ -4,14 +4,14 @@ require 'minitest/pride'
 
 class TimesTest < Minitest::Test
 
-  def __
-    "Fill in the blank here"
+  def __(n)
+    "spank #{n}"
   end
 
   def test_do_it_again
     happy_birthday = []
-    3.times do
-      happy_birthday << __
+    3.times do |i|
+      happy_birthday << __(i)
     end
     assert_equal ["spank 0", "spank 1", "spank 2"], happy_birthday
   end
