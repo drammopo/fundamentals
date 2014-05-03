@@ -61,10 +61,55 @@ class HashesThreeTest < Minitest::Test
 
     # Your turn.
     # How old is Frederic?
+    age = nil
+    neighborhood.each do |color, people|
+      if people.has_key?("Frederic")
+        age = people["Frederic"]
+      end
+    end
+    assert_equal 2, age
+
     # Who lives with Frederic?
+    roommates = nil
+    neighborhood.each do |color, people|
+      if people.has_key?("Frederic")
+        roommates = people.keys
+        roommates.delete("Frederic")
+      end
+    end
+    assert_equal ["Bill", "Carolyn"], roommates
+
     # Who lives with Penelope?
+    roommates = nil
+    neighborhood.each do |color, people|
+      if people.has_key?("Penelope")
+        roommates = people.keys
+        roommates.delete("Penelope")
+      end
+    end
+    assert_equal ["Timothy", "John", "Rosie"], roommates
     # Who are all the teenagers in the neighborhood?
+    teens = []
+    neighborhood.each do |color, people|
+      people.each do |name, age|
+        if age > 12 && age < 20
+          teens << name
+        end
+      end
+    end
+    expected = ["Penelope", "Torrey", "Alvera", "Jamie", "Grant"]
+    assert_equal expected.sort, teens.sort
     # Who are all the adults in the neighborhood?
+    adults = []
+    neighborhood.each do |color, people|
+      people.each do |name, age|
+        if age >= 21
+          adults << name
+        end
+      end
+    end
+    expected = ["Alex", "Annie", "Bill", "Carolyn", "Fred", "John", "Kaylee", "Timothy"]
+    assert_equal expected.sort, adults.sort
   end
 end
 
