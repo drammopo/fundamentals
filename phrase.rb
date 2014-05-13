@@ -6,10 +6,11 @@ class Phrase
   end
 
   def word_count
-    words.inject({}) do |h, (word)|
-      h.has_key?(word) ? h[word] += 1 :  h[word] = 1
-      h
+    word_count = Hash.new(0)
+    words.each do |word|
+      word_count[word] += 1
     end
+    word_count
   end
 
   def words
